@@ -1,0 +1,215 @@
+@font-face {
+    font-family: hp;
+    src: url('../harry_p/HARRYP__.TTF');
+}
+
+body {
+    background-image: url('../img/fundo.png');
+    background-size: cover;
+    padding-bottom: 70px;
+}
+
+body .navbar {
+    background: #e3f1ff;
+}
+
+body .navbar p {
+    font-family: hp;
+    color: white;
+    font-size: xxx-large;
+    margin: auto;
+}
+
+body .navbar .btn-group>.btn:first-child {
+    background: none;
+}
+
+body .navbar .btn:focus {
+    box-shadow: none;
+}
+
+body .navbar .dropdown-toggle::after {
+    display: none;
+}
+
+body .navbar .icon-carrinho {
+    margin: auto;
+}
+
+body .navbar .btn-group img {
+    max-height: 51px;
+    width: auto;
+    margin: auto;
+}
+
+body .navbar .btn-group a {
+    margin: auto;
+}
+
+body .navbar-brand {
+    height: 70px;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#logo-titulo {
+    max-width: 200px;
+    height: 50px;
+    margin: auto;
+}
+
+#login,
+#cadastrar {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#login form,
+#cadastrar form {
+    width: 300px;
+    height: auto;
+    margin: auto;
+    background: #e3f1ffed;
+    position: relative;
+    border: solid #78b9ff;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#login form .form-group,
+#cadastrar form .form-group {
+    width: 100%;
+}
+
+a.botao {
+    width: 100%;
+}
+
+#login form .btn-primary,
+#cadastrar form .btn-primary {
+    background: #78b9ff;
+    border: none;
+    width: 100%;
+}
+
+#login form .registre,
+#cadastrar form .logar {
+    margin-top: 1rem;
+}
+
+#login form .btn-primary:hover,
+#cadastrar form .btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+#perfil {
+    border-radius: 100%;
+    margin-top: -60px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90px;
+    width: 100%;
+    margin-bottom: 10px;
+    height: fit-content;
+}
+
+#login form .dropdown-item,
+#cadastrar form .dropdown-item {
+    text-align: center;
+}
+
+#login form .dropdown-item:hover,
+#cadastrar form .dropdown-item:hover {
+    text-align: center;
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bolder;
+    background: none;
+}
+
+body .btn-outline-success {
+    color: white;
+    border-color: white;
+}
+
+body .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+#logo {
+    width: auto;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.navbar .form-inline .form-control {
+    width: calc(100% - 91px);
+}
+
+.navbar .form-inline {
+    width: calc(100% - 538px);
+}
+
+.navbar .btn-primary {
+    background: #78b9ff;
+    border-color: #78b9ff;
+}
+
+body footer {
+    display: flex;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #e3f1ff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+footer img {
+    width: 40px;
+}
+
+footer a {
+    color: white;
+}
+
+footer .texto {
+    width: 100%;
+    text-align: center;
+}
+
+footer .texto p {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    body .navbar {
+        background: #78b9ff;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center !important;
+        align-items: center;
+    }
+    .navbar .form-inline {
+        width: auto;
+    }
+}
+
+@media (max-width: 349px) {
+    .navbar-light .navbar-brand {
+        zoom: 0.7;
+    }
+}
