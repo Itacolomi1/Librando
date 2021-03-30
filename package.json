@@ -25,6 +25,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.10",
     "mongoose-unique-validator": "^2.0.3",
+    "node": "^15.12.0",
     "object-hash": "^2.1.1",
     "standard": "^16.0.3"
   }
