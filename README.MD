@@ -1,27 +1,5 @@
-# Librando
-Aplicação para cadastro dos professores
+# MongoSample
 
-## Iniciando
->Acesse a pasta do projeto
+Este é um exemplo de uso do ExpressJS + NodeJS + Mongo para fazer uma API.
 
->Abra ela no terminal 
-
->Execute o comando npm install
-
->Mudar a variavel de ambiente (MONGO_URL) para a conexão com o MongoDB no arquivo .env, seguindo o exemplo do
- .env.example
-
->Execute o comando npm run start
-
-### Pré requisitos
-
-NodeJs e MongoDB instalados
-
-
-## Autores
-
-* **Gabriella Gomes** 
-* **Italo Martins** 
-* **Milena Ferreira** 
-* **Patricia Castro** 
-
+Essa API não tem nenhum tipo de autenticação.

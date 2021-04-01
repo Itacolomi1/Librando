@@ -3,9 +3,8 @@
 
 <head>
     <title>Librando</title>
-    <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="JS/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="./js/jquery-3.6.0.js"></script> 
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
@@ -20,7 +19,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -45,15 +44,15 @@
         <form class="px-4 py-3">
             <img id="perfil" src="img/perfil.png" class="lazy" title="perfil" alt="perfil">
             <div class="form-group">
-                <label for="exampleDropdownFormEmail1">Endereço de email</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com">
+                <label for="email_user">Endereço de email</label>
+                <input type="email" class="form-control" id="email_user" placeholder="email@exemplo.com">
             </div>
             <div class="form-group">
-                <label for="exampleDropdownFormPassword1">Senha</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Senha">
+                <label for="password_user">Senha</label>
+                <input type="password" class="form-control" id="password_user" placeholder="Senha">
             </div>
 
-            <button onclick="" type="submit" class="btn btn-primary">Entrar</button>
+            <button onclick="usuario.logar()" type="button" class="btn btn-primary">Entrar</button>
             <!-- <a class="dropdown-item" href="">Esqueceu sua senha?</a> -->
             <a href="cadastro.html" class="btn registre btn-primary">Novo, por aqui? Registre-se.</a>
         </form>
@@ -64,10 +63,10 @@
             <p>2021 © Librando. Todos os direitos reservados. </p>
 
         </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    </footer>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src = "./js/usuario.js"></script>
 
 </body>
 
