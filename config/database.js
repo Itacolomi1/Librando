@@ -9,7 +9,7 @@ module.exports = services;
 
 
 function connect() { 
-    var connection = process.env.connectionStringV2 || config.connectionStringV2;
+    var connection = process.env.CUSTOMCONNSTR_connectionStringV2 || config.connectionStringV2;
     var database = process.env.databaseV2 || config.databaseV2;
     const mongo = require('mongodb').MongoClient;
     mongo.connect(connection, { useUnifiedTopology: true })
