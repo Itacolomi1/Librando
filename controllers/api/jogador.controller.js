@@ -3,7 +3,7 @@ var router = express.Router();
 var usuarioService = require('services/jogador.service');
 
 // routes
-router.post('/', createPerson);
+router.post('/registra', createPerson);
 router.get('/', listPeople);
 router.put('/', updatePerson);
 router.get('/:_id', getCurrentPerson);
