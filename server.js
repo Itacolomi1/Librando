@@ -25,21 +25,6 @@ api.use('/api', expressJwt({ secret: process.env.secret || config.secret }).unle
 api.use('/api/pessoas', require('./controllers/api/jogador.controller'));
 api.use('/api/usuario',require('./controllers/api/usuario.controller'));
 
-
-//Set Files
-api.use(express.static('view'));
-api.use('/css',express.static(__dirname + 'view/css'));
-api.use('/img',express.static(__dirname + 'view/img'));
-api.use('/js',express.static(__dirname + 'view/js'));
-
-//Set Views
-api.set('views','./view')
-api.set('view engine','ejs')
-
-api.get('/',(req,res)=>{   
-    res.render('index');
-})
-
 // process.env.PORT é uma variável injetada pelo Azure Web App. Caso ela não exista, será utilizada a porta fixa (6000)
 var apiPort = process.env.PORT || config.port;
 
