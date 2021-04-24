@@ -21,7 +21,7 @@ api.use(express.json());
 // Essa configuração na API indica que haverá JWT para cada endpoint / rota método, com exceção dos métodos
 // de autenticação, registro de usuários e sobre. Essa camada de segurança é muito boa, porque ajuda
 // na diminuição do tratamento de mensagens indevidas na aplicação
-api.use('/api', expressJwt({ secret: process.env.secret || config.secret }).unless({ path: ['/api/usuario/authenticate', '/api/usuario/register','/api/pessoas/registra'] }));
+api.use('/api', expressJwt({ secret: process.env.secret || config.secret }).unless({ path: ['/api/usuario/authenticate', '/api/usuario/register','/api/jogador/registra'] }));
 api.use('/api/jogador', require('./controllers/api/jogador.controller'));
 api.use('/api/usuario',require('./controllers/api/usuario.controller'));
 
