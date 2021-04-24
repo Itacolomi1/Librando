@@ -22,7 +22,7 @@ api.use(express.json());
 // de autenticação, registro de usuários e sobre. Essa camada de segurança é muito boa, porque ajuda
 // na diminuição do tratamento de mensagens indevidas na aplicação
 api.use('/api', expressJwt({ secret: process.env.secret || config.secret }).unless({ path: ['/api/usuario/authenticate', '/api/usuario/register','/api/pessoas/registra'] }));
-api.use('/api/pessoas', require('./controllers/api/jogador.controller'));
+api.use('/api/jogador', require('./controllers/api/jogador.controller'));
 api.use('/api/usuario',require('./controllers/api/usuario.controller'));
 
 // process.env.PORT é uma variável injetada pelo Azure Web App. Caso ela não exista, será utilizada a porta fixa (6000)
