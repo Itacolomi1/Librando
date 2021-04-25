@@ -14,6 +14,7 @@ module.exports = router;
 function createRoom(req, res) {
    // req.body
    req.body.status=0; 
+   req.body.cod_acesso= getRandomInt(1000,9999);
     salaService.create(req.body)
         .then(function () {
             res.sendStatus(200);
@@ -23,4 +24,9 @@ function createRoom(req, res) {
         });
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
