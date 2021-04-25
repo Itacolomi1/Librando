@@ -7,10 +7,8 @@ mongoDB.connect();
 
 var service = {};
 service.create = create;
-//service.getById = getById;
-//service.listPeople = listPeople;
-//service.update = update;
-//service.delete = _delete;
+service.verifica_sala_ativa = verifica_sala_ativa;
+service.valida_codigo = valida_codigo;
 
 module.exports = service;
 
@@ -42,4 +40,53 @@ function create(salaParam) {
     }
 
     return deferred.promise;
+}
+
+function verifica_sala_ativa(roomname){
+
+    var deferred = Q.defer();
+    var room = global.conn.collection("Sala");
+
+    room.findOne(
+        { roomName: roomname },
+        function (err, room) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            if (room) {
+                // room already exists
+                if(room.status == 0){
+                    deferred.resolve(false);
+                }else{
+                    deferred.resolve(true);
+                }
+               
+            } else {
+                deferred.reject('A sala' +roomname + 'não foi encontrada');
+            }
+        });
+    
+    return deferred.promise;
+
+}
+
+function valida_codigo(codigo){
+
+    var deferred = Q.defer();
+    var room = global.conn.collection("Sala");
+
+    room.findOne(
+        { cod_acesso: codigo },
+        function (err, room) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            if (room) {
+                deferred.resolve(true);                
+               
+            } else {
+                deferred.resolve(false); 
+            }
+        });
+    
+    return deferred.promise;
+
 }
