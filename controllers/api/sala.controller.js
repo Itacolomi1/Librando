@@ -4,7 +4,7 @@ var salaService = require('services/sala.service');
 
 // routes
 router.post('/register', createRoom);
-//router.get('/', listPeople);
+router.post('/sala_ativa', verifica_sala);
 //router.put('/', updatePerson);
 //router.get('/:_id', getCurrentPerson);
 //router.delete('/:_id', deletePerson);
@@ -26,7 +26,36 @@ function createRoom(req, res) {
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+    max = Math.floor(max);    
+    
+    var  codigogerado = Math.floor(Math.random() * (max - min)) + min;
+    //Precisamos entender melhor esse budega de Javascript.
+    salaService.valida_codigo(codigogerado)
+        .then(function(room){
+           if(room == true){
+            getRandomInt(1000,9999)
+           }
+           
+        })
+        .catch(function(err){
+            res.sendStatus(400).send(err);
+        })    
+
+        return codigogerado;
+    
   }
+
+function verifica_sala(req,res){
+
+    salaService.verifica_sala_ativa(req.body.roomname)
+    .then(function(room){
+        res.send(room);
+    })
+    .catch(function(err){
+        res.sendStatus(400).send(err);
+    })
+
+
+}
+
 
