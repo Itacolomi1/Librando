@@ -30,7 +30,7 @@ function getRandomInt(min, max) {
     
     var  codigogerado = Math.floor(Math.random() * (max - min)) + min;
     //Precisamos entender melhor esse budega de Javascript.
-    salaService.valida_codigo(codigogerado)
+   /* salaService.valida_codigo(codigogerado)
         .then(function(room){
            if(room == true){
             getRandomInt(1000,9999)
@@ -40,6 +40,7 @@ function getRandomInt(min, max) {
         .catch(function(err){
             res.sendStatus(400).send(err);
         })    
+        */
 
         return codigogerado;
     
