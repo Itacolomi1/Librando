@@ -9,6 +9,7 @@ var service = {};
 service.create = create;
 service.verifica_sala_ativa = verifica_sala_ativa;
 service.valida_codigo = valida_codigo;
+service.lista_salas = lista_salas;
 
 module.exports = service;
 
@@ -89,4 +90,24 @@ function valida_codigo(codigo){
     
     return deferred.promise;
 
+}
+
+function lista_salas() {
+
+    var deferred = Q.defer();
+    var room = global.conn.collection("Sala");
+
+    room.find().toArray(function (err, room) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (room) {
+            // return user (without hashed password)
+            deferred.resolve(room);
+        } else {
+            // user not found
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
 }
