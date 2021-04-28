@@ -5,8 +5,9 @@ var salaService = require('services/sala.service');
 // routes
 router.post('/register', createRoom);
 router.post('/sala_ativa', verifica_sala);
+router.get('/', lista_sala);
 //router.put('/', updatePerson);
-//router.get('/:_id', getCurrentPerson);
+
 //router.delete('/:_id', deletePerson);
 
 module.exports = router;
@@ -55,8 +56,23 @@ function verifica_sala(req,res){
     .catch(function(err){
         res.sendStatus(400).send(err);
     })
+}
 
+function lista_sala(req,res){
 
+    salaService.lista_salas()
+    .then((room)=>{
+        if(room){
+           res.send(room);
+        }else{
+            res.sendStatus(400);    
+        }
+        
+    })
+    .catch((err)=>{
+        res.sendStatus(400).send(err);
+
+    })
 }
 
 
