@@ -25,7 +25,7 @@ api.use('/api', expressJwt({ secret: process.env.secret || config.secret }).unle
 api.use('/api/jogador', require('./controllers/api/jogador.controller'));
 api.use('/api/usuario',require('./controllers/api/usuario.controller'));
 api.use('/api/sala',require('./controllers/api/sala.controller'));
-
+api.use('/api/jogo1', require('./controllers/api/jogo1.controller'));
 // process.env.PORT é uma variável injetada pelo Azure Web App. Caso ela não exista, será utilizada a porta fixa (6000)
 var apiPort = process.env.PORT || config.port;
 
