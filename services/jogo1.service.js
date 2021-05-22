@@ -7,7 +7,7 @@ mongoDB.connect();
 
 var service = {};
 service.create = create;
-service.listPeople = listJogo1;
+service.listJogo1 = listJogo1;
 
 module.exports = service;
 
