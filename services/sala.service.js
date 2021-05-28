@@ -74,13 +74,13 @@ function valida_codigo (codigo) {
 
   room.findOne(
     { cod_acesso: codigo },
-    function (err, room) {
+    function (err,sala) {
       if (err) deferred.reject(err.name + ': ' + err.message)
 
-      if (room) {
-        deferred.resolve(true)
+      if (sala) {        
+        deferred.resolve(sala._id);
       } else {
-        deferred.resolve(false)
+        deferred.resolve(null);
       }
     })
 
@@ -151,7 +151,7 @@ function createJogador (salaParam) {
         $push: {
           jogador: {
             $each: [
-              { personName: salaParam.personName, pontos: 0 }
+              { id_jogador: salaParam.cd_jogador, pontos: 0, data: salaParam.data }
             ]
           }
         }

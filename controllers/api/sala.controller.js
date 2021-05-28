@@ -7,7 +7,8 @@ router.post('/register', createRoom)
 router.post('/sala_ativa', verifica_sala)
 router.get('/', lista_sala)
 router.put('/editarSala', updateSala)
-router.get('/createJogador', createNewJogador)
+router.post('/createJogador', createNewJogador)
+router.get('/valida',valida_codigo)
 
 // router.delete('/:_id', deletePerson);
 
@@ -89,4 +90,19 @@ function createNewJogador (req, res) {
     .catch(function (err) {
       res.status(400).send(err)
     })
+}
+
+function valida_codigo(req,res){
+    
+  var codigo = req.query.code;
+  codigo = parseInt(codigo);
+  salaService.valida_codigo(codigo)
+  .then(function(room){
+      res.send(room);
+  })
+  .catch(function(err){
+      res.sendStatus(400).send(err);
+  })
+
+
 }
