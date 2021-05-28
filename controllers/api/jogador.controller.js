@@ -13,8 +13,8 @@ module.exports = router;
 
 function createPerson(req, res) {
     usuarioService.create(req.body)
-        .then(function () {
-            res.sendStatus(200);
+        .then(function (data) {
+            res.send(data);
         })
         .catch(function (err) {
             res.status(400).send(err);
