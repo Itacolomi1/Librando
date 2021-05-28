@@ -15,7 +15,7 @@ function authenticateUser (req, res) {
     .then(function (response) {
       if (response) {
         // authentication successful
-        localStorage.setItem('token', response.token)
+        //localStorage.setItem('token', response.token)
         res.send({ userId: response.userId, token: response.token })                
             } else {
         // authentication failed
