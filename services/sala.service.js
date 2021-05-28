@@ -10,6 +10,7 @@ service.verifica_sala_ativa = verifica_sala_ativa
 service.valida_codigo = valida_codigo
 service.lista_salas = lista_salas
 service.update = update
+service.createJogador = createJogador
 
 module.exports = service
 
@@ -121,6 +122,40 @@ function update (salaParam) {
     salas.updateOne(
       { _id: new ObjectID.createFromHexString(salaParam._id) },
       { $set: set },
+      function (err, doc) {
+        if (err) {
+          deferred.reject(err.name + ': ' + err.message)
+        }
+
+        deferred.resolve()
+      })
+  }
+
+  return deferred.promise
+}
+
+function createJogador (salaParam) {
+  const deferred = Q.defer()
+  const salas = global.conn.collection('Sala')
+  // validation
+  salas.findOne({ _id: new ObjectID.createFromHexString(salaParam._id) }, function (err, sala) {
+    if (err) deferred.reject(err.name + ': ' + err.message)
+    if (sala) {
+      createNovoJogador()
+    }
+  })
+  function createNovoJogador () {
+    salas.updateOne(
+      { _id: new ObjectID.createFromHexString(salaParam._id) },
+      {
+        $push: {
+          jogador: {
+            $each: [
+              { personName: salaParam.personName, pontos: 0 }
+            ]
+          }
+        }
+      },
       function (err, doc) {
         if (err) {
           deferred.reject(err.name + ': ' + err.message)

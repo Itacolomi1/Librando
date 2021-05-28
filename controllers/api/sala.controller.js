@@ -7,6 +7,7 @@ router.post('/register', createRoom)
 router.post('/sala_ativa', verifica_sala)
 router.get('/', lista_sala)
 router.put('/editarSala', updateSala)
+router.get('/createJogador', createNewJogador)
 
 // router.delete('/:_id', deletePerson);
 
@@ -72,6 +73,16 @@ function lista_sala (req, res) {
 
 function updateSala (req, res) {
   salaService.update(req.body)
+    .then(function () {
+      res.sendStatus(200)
+    })
+    .catch(function (err) {
+      res.status(400).send(err)
+    })
+}
+
+function createNewJogador (req, res) {
+  salaService.createJogador(req.body)
     .then(function () {
       res.sendStatus(200)
     })
