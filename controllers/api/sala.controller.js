@@ -103,7 +103,6 @@ function valida_codigo (req, res) {
 }
 
 function getJogadores (req, res) {
-  console.log(req.body)
   salaService.getJogadores(req.body)
     .then((room) => {
       if (room) {
