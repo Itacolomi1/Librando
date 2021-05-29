@@ -11,6 +11,7 @@ service.valida_codigo = valida_codigo
 service.lista_salas = lista_salas
 service.update = update
 service.createJogador = createJogador
+service.updatePontos = updatePontuacao
 
 module.exports = service
 
@@ -156,6 +157,36 @@ function createJogador (salaParam) {
           }
         }
       },
+      function (err, doc) {
+        if (err) {
+          deferred.reject(err.name + ': ' + err.message)
+        }
+
+        deferred.resolve()
+      })
+  }
+
+  return deferred.promise
+}
+
+function updatePontuacao (id_sala, pontuacao, id_jogador) {
+  const deferred = Q.defer()
+  const salas = global.conn.collection('Sala')
+  // validation
+  salas.findOne({ _id: new ObjectID.createFromHexString(id_sala) }, function (err, sala) {
+    if (err) deferred.reject(err.name + ': ' + err.message)
+    if (sala) {
+
+      sala.jogador.find(x=> x.id_jogador == id_jogador).pontos=pontuacao;
+      updatePontuacaoSala(sala)
+    }
+  })
+  function updatePontuacaoSala (sala) {
+    const set = lodash.omit(sala, '_id')
+
+    salas.updateOne(
+      { _id: new ObjectID.createFromHexString(id_sala) },
+      { $set: set },
       function (err, doc) {
         if (err) {
           deferred.reject(err.name + ': ' + err.message)

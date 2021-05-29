@@ -9,6 +9,7 @@ router.get('/', lista_sala)
 router.put('/editarSala', updateSala)
 router.post('/createJogador', createNewJogador)
 router.get('/valida',valida_codigo)
+router.put('/pontuacao', updatePontuacao)
 
 // router.delete('/:_id', deletePerson);
 
@@ -32,18 +33,6 @@ function getRandomInt (min, max) {
   max = Math.floor(max)
 
   const codigogerado = Math.floor(Math.random() * (max - min)) + min
-  // Precisamos entender melhor esse budega de Javascript.
-  /* salaService.valida_codigo(codigogerado)
-        .then(function(room){
-           if(room == true){
-            getRandomInt(1000,9999)
-           }
-
-        })
-        .catch(function(err){
-            res.sendStatus(400).send(err);
-        })
-        */
 
   return codigogerado
 }
@@ -81,7 +70,15 @@ function updateSala (req, res) {
       res.status(400).send(err)
     })
 }
-
+function updatePontuacao (req, res) {
+  salaService.updatePontos(req.body._id, req.body.pontos, req.body.id_jogador)
+    .then(function () {
+      res.sendStatus(200)
+    })
+    .catch(function (err) {
+      res.status(400).send(err)
+    })
+}
 function createNewJogador (req, res) {
   salaService.createJogador(req.body)
     .then(function () {
