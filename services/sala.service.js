@@ -12,6 +12,7 @@ service.lista_salas = lista_salas
 service.update = update
 service.createJogador = createJogador
 service.updatePontos = updatePontuacao
+service.getJogadores = getJogadores
 
 module.exports = service
 
@@ -75,13 +76,13 @@ function valida_codigo (codigo) {
 
   room.findOne(
     { cod_acesso: codigo },
-    function (err,sala) {
+    function (err, sala) {
       if (err) deferred.reject(err.name + ': ' + err.message)
 
-      if (sala) {        
-        deferred.resolve(sala._id);
+      if (sala) {
+        deferred.resolve(sala._id)
       } else {
-        deferred.resolve(null);
+        deferred.resolve(null)
       }
     })
 
@@ -136,6 +137,7 @@ function update (salaParam) {
 }
 
 function createJogador (salaParam) {
+  console.log(salaParam)
   const deferred = Q.defer()
   const salas = global.conn.collection('Sala')
   // validation
@@ -152,7 +154,7 @@ function createJogador (salaParam) {
         $push: {
           jogador: {
             $each: [
-              { id_jogador: salaParam.cd_jogador, pontos: 0, data: salaParam.data }
+              { id_jogador: salaParam.cd_jogador, pontos: 0, personName: salaParam.personName, data: salaParam.data }
             ]
           }
         }
@@ -176,8 +178,7 @@ function updatePontuacao (id_sala, pontuacao, id_jogador) {
   salas.findOne({ _id: new ObjectID.createFromHexString(id_sala) }, function (err, sala) {
     if (err) deferred.reject(err.name + ': ' + err.message)
     if (sala) {
-
-      sala.jogador.find(x=> x.id_jogador == id_jogador).pontos=pontuacao;
+      sala.jogador.find(x => x.id_jogador == id_jogador).pontos = pontuacao
       updatePontuacaoSala(sala)
     }
   })
@@ -197,4 +198,35 @@ function updatePontuacao (id_sala, pontuacao, id_jogador) {
   }
 
   return deferred.promise
+}
+
+function getJogadores (salaParam) {
+  console.log(salaParam)
+  const deferred = Q.defer()
+  const salas = global.conn.collection('Sala')
+
+  salas.findOne({ _id: new ObjectID.createFromHexString(salaParam._id) }, function (err, sala) {
+    if (err) deferred.reject(err.name + ': ' + err.message)
+    const listaJogadores = []
+    if (sala) {
+      deferred.resolve(sala.jogador)
+      sala.forEach(element => {
+        console.log(element)
+        listaJogadores.push(getJogadorNome(element))
+      })
+    }
+    deferred.resolve(listaJogadores)
+  })
+
+  function getJogadorNome (dbJogador) {
+    const dbJogadores = global.conn.collection('Jogadores')
+
+    dbJogadores.findOne({ _id: new ObjectID.createFromHexString(dbJogador._id) }, function (err, jogador) {
+      if (err) deferred.reject(err.name + ': ' + err.message)
+
+      let newJogadorPontos = ''
+      if (jogador) { newJogadorPontos = jogador }
+      return newJogadorPontos
+    })
+  }
 }

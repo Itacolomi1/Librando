@@ -8,8 +8,9 @@ router.post('/sala_ativa', verifica_sala)
 router.get('/', lista_sala)
 router.put('/editarSala', updateSala)
 router.post('/createJogador', createNewJogador)
-router.get('/valida',valida_codigo)
+router.get('/valida', valida_codigo)
 router.put('/pontuacao', updatePontuacao)
+router.get('/jogadores', getJogadores)
 
 // router.delete('/:_id', deletePerson);
 
@@ -89,17 +90,26 @@ function createNewJogador (req, res) {
     })
 }
 
-function valida_codigo(req,res){
-    
-  var codigo = req.query.code;
-  codigo = parseInt(codigo);
+function valida_codigo (req, res) {
+  let codigo = req.query.code
+  codigo = parseInt(codigo)
   salaService.valida_codigo(codigo)
-  .then(function(room){
-      res.send(room);
-  })
-  .catch(function(err){
-      res.sendStatus(400).send(err);
-  })
+    .then(function (room) {
+      res.send(room)
+    })
+    .catch(function (err) {
+      res.sendStatus(400).send(err)
+    })
+}
 
-
+function getJogadores (req, res) {
+  console.log(req.body)
+  salaService.getJogadores(req.body)
+    .then((room) => {
+      if (room) {
+        res.send(room)
+      } else {
+        res.sendStatus(400)
+      }
+    })
 }
