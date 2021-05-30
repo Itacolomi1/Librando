@@ -11,6 +11,7 @@ router.post('/createJogador', createNewJogador)
 router.get('/valida', valida_codigo)
 router.put('/pontuacao', updatePontuacao)
 router.post('/jogadores', jogadores)
+router.get('/testeSala',verifySalaCodigo)
 
 // router.delete('/:_id', deletePerson);
 
@@ -109,4 +110,40 @@ function jogadores (req, res) {
         res.send(room)
       }
     })
+}
+
+async function verifySalaCodigo(req,res){
+
+  var TestResult = [];
+  var codigo = 2912;
+  
+
+  TestResult[0] = 'Cenário postivo com codigo igual a 2912 retornou: ';
+  //caso True
+  await salaService.valida_codigo(codigo)
+  .then(function(data){
+
+       TestResult[0] += ( data!= null)? 'true' : 'false';        
+
+  })
+  .catch(function (err) {
+    res.status(400).send(err)
+  })
+
+  //caso False
+  var codigo = 99999999;
+
+
+  TestResult[1] = 'Cenário negativo com codigo igual a 99999999 retornou: ';
+  await salaService.valida_codigo(codigo)
+  .then(function(response){ 
+    TestResult[1] += ( response!= null)? 'true' : 'false';
+  })
+  .catch(function (err) {
+    res.status(400).send(err)    
+
+  })
+
+  res.send(TestResult);
+
 }

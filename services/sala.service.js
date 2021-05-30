@@ -63,7 +63,7 @@ function verifica_sala_ativa (roomname) {
           deferred.resolve(true)
         }
       } else {
-        deferred.reject('A sala' + roomname + 'não foi encontrada')
+        deferred.reject('A sala ' + roomname + ' não foi encontrada')
       }
     })
 

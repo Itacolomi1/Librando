@@ -7,6 +7,7 @@ var userService = require('services/usuario.service')
 // routes
 router.post('/authenticate', authenticateUser)
 router.post('/register', registerUser)
+router.get('/loginTeste',verifyLogin)
 
 module.exports = router
 
@@ -35,4 +36,39 @@ function registerUser (req, res) {
     .catch(function (err) {
       res.status(400).send(err)
         })
+}
+
+ async function verifyLogin(req,res){
+
+  var TestResult = [];
+  var email = 'admin@admin.com';
+  var senha = '123';
+
+  TestResult[0] = 'Cenário postivo com usuário admin@admin.com e senha 123 retornou: ';
+  //caso True
+  await userService.authenticate(email,senha)
+  .then(function(data){
+
+       TestResult[0] += (data)? 'true' : 'false';        
+
+  })
+  .catch(function (err) {
+    res.status(400).send(err)
+  })
+
+  //caso False
+  var email = 'admin@admin.com.br.jdksa';
+  var senha = '1232123213';
+
+  TestResult[1] = 'Cenário negativo com usuário admin@admin.com.br.jdksa e senha 1232123213 retornou: ';
+  await userService.authenticate(email,senha)
+  .then(function(response){ 
+    TestResult[1] += (response)? 'true' : 'false'; 
+  })
+  .catch(function (err) {
+    res.status(400).send(err)
+  })
+
+  res.send(TestResult);
+
 }
