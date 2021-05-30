@@ -12,7 +12,7 @@ service.lista_salas = lista_salas
 service.update = update
 service.createJogador = createJogador
 service.updatePontos = updatePontuacao
-service.getJogadores = getJogadores
+service.jogadores = jogadores
 
 module.exports = service
 
@@ -199,7 +199,7 @@ function updatePontuacao (id_sala, pontuacao, id_jogador) {
   return deferred.promise
 }
 
-function getJogadores (salaParam) {
+function jogadores (salaParam) {
   const deferred = Q.defer()
   const salas = global.conn.collection('Sala')
   salas.findOne({ _id: new ObjectID.createFromHexString(salaParam._id) }, function (err, sala) {

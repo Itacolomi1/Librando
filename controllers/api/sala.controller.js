@@ -10,7 +10,7 @@ router.put('/editarSala', updateSala)
 router.post('/createJogador', createNewJogador)
 router.get('/valida', valida_codigo)
 router.put('/pontuacao', updatePontuacao)
-router.get('/jogadores', getJogadores)
+router.post('/jogadores', jogadores)
 
 // router.delete('/:_id', deletePerson);
 
@@ -102,13 +102,11 @@ function valida_codigo (req, res) {
     })
 }
 
-function getJogadores (req, res) {
-  salaService.getJogadores(req.body)
+function jogadores (req, res) {
+  salaService.jogadores(req.body)
     .then((room) => {
       if (room) {
         res.send(room)
-      } else {
-        res.sendStatus(400)
       }
     })
 }
