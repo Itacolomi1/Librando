@@ -80,7 +80,7 @@ function valida_codigo (codigo) {
       if (err) deferred.reject(err.name + ': ' + err.message)
 
       if (sala) {
-        deferred.resolve(sala._id)
+        deferred.resolve(sala)
       } else {
         deferred.resolve(null)
       }
