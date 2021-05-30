@@ -115,10 +115,10 @@ function jogadores (req, res) {
 async function verifySalaCodigo(req,res){
 
   var TestResult = [];
-  var codigo = 2912;
+  var codigo = 7332;
   
 
-  TestResult[0] = 'Cenário postivo com codigo igual a 2912 retornou: ';
+  TestResult[0] = 'Cenário postivo com codigo igual a 7332 retornou: ';
   //caso True
   await salaService.valida_codigo(codigo)
   .then(function(data){
